@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OVA-04: Despliegue de aplicaciones en contenedores con Docker y CloudPanel | SENA</title>
+  
+  <!-- Estilos del Framework Institucional SENA -->
+  <link rel="stylesheet" href="css/sena-theme.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/docker-simulator.css">
+</head>
+<body>
+
+  <!-- Barra de Clasificación y Contexto Institucional -->
+  <div class="classification-bar">
+    <span>SERVICIO NACIONAL DE APRENDIZAJE (SENA) · REGIONAL BOYACÁ</span>
+    <span>CENTRO MINERO - AMBIENTE 205 | RED INFORMÁTICA Y SOFTWARE</span>
+  </div>
+
+  <!-- Header Principal -->
+  <header class="sena-header">
+    <a href="#intro" class="header-brand">
+      <img src="assets/logos/sena-logo.svg" alt="SENA Logo" class="header-logo">
+      <div class="header-titles">
+        <span class="header-ova-badge">OVA-04 · EN CONSTRUCCIÓN (EN PROGRESO)</span>
+        <h1 class="header-title">Despliegue de Aplicaciones en Contenedores con Docker y CloudPanel</h1>
+      </div>
+    </a>
+
+    <div class="header-tools">
+      <button id="themeToggle" class="btn-icon" title="Cambiar modo oscuro/claro" aria-label="Cambiar tema">🌙</button>
+      <button id="menuToggle" class="btn-icon" title="Abrir menú de navegación" aria-label="Abrir menú">☰</button>
+    </div>
+
+    <!-- Barra de Progreso Global -->
+    <div class="global-progress-bar" style="width: 10%;"></div>
+  </header>
+
+  <!-- Contenedor de la Aplicación -->
+  <div class="app-container">
+
+    <!-- Barra Lateral de Navegación -->
+    <aside class="sidebar">
+      <div class="nav-section-title">INTRODUCCIÓN</div>
+      <a class="nav-item active" data-target="intro">
+        <span class="nav-icon">🚀</span>
+        <span>Presentación y RAPs</span>
+        <span class="nav-badge-check">✓</span>
+      </a>
+
+      <div class="nav-section-title">UNIDADES TEMÁTICAS</div>
+      <a class="nav-item" data-target="tema1">
+        <span class="nav-icon">📦</span>
+        <span>1. VMs vs Contenedores</span>
+        <span class="nav-badge-check">✓</span>
+      </a>
+      <a class="nav-item" data-target="tema2">
+        <span class="nav-icon">🐳</span>
+        <span>2. Docker & Compose</span>
+        <span class="nav-badge-check">✓</span>
+      </a>
+      <a class="nav-item" data-target="tema3">
+        <span class="nav-icon">🖥️</span>
+        <span>3. CloudPanel & Dokploy</span>
+        <span class="nav-badge-check">✓</span>
+      </a>
+      <a class="nav-item" data-target="tema4">
+        <span class="nav-icon">⛏️</span>
+        <span>4. Proyectos Centro Minero</span>
+        <span class="nav-badge-check">✓</span>
+      </a>
+
+      <div class="nav-section-title">SIMULADOR INTERACTIVO</div>
+      <a class="nav-item" data-target="simulador">
+        <span class="nav-icon">⚡</span>
+        <span>Playground de Despliegue</span>
+        <span class="nav-badge-check">✓</span>
+      </a>
+
+      <div class="nav-section-title">EVALUACIÓN Y CIERRE</div>
+      <a class="nav-item" data-target="evaluacion">
+        <span class="nav-icon">📝</span>
+        <span>Evaluación Formativa</span>
+        <span class="nav-badge-check">✓</span>
+      </a>
+      <a class="nav-item" data-target="sintesis">
+        <span class="nav-icon">🧠</span>
+        <span>Síntesis Conceptual</span>
+        <span class="nav-badge-check">✓</span>
+      </a>
+      <a class="nav-item" data-target="glosario">
+        <span class="nav-icon">📖</span>
+        <span>Glosario Técnico</span>
+        <span class="nav-badge-check">✓</span>
+      </a>
+      <a class="nav-item" data-target="referencias">
+        <span class="nav-icon">📚</span>
+        <span>Referencias & Créditos</span>
+        <span class="nav-badge-check">✓</span>
+      </a>
+    </aside>
+
+    <!-- Área de Contenido Principal -->
+    <main class="main-content">
+
+      <!-- ================================================================== -->
+      <!-- SECCIÓN 0: INTRODUCCIÓN Y PRESENTACIÓN                              -->
+      <!-- ================================================================== -->
+      <section id="intro" class="content-section active">
+        <div class="hero-banner">
+          <div class="hero-tag">⚡ Ecosistema DevOps & Cloud Moderno</div>
+          <h2 class="hero-title">Despliegue de Aplicaciones en Contenedores con Docker y CloudPanel</h2>
+          <p class="hero-subtitle">
+            Aprende a empaquetar, orquestar y desplegar microservicios y aplicaciones web modernas utilizando Docker Engine, Dockerfiles multi-stage, Docker Compose y paneles de gestión de servidores como CloudPanel y Dokploy en la infraestructura del Ambiente 205 del Centro Minero.
+          </p>
+          <div class="hero-meta-grid">
+            <div class="hero-meta-item">
+              <div class="hero-meta-icon">🎓</div>
+              <div>
+                <div class="hero-meta-label">Programas de Formación</div>
+                <div class="hero-meta-value">ADSO (228118) · Web Full Stack (228125)</div>
+              </div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-icon">🏢</div>
+              <div>
+                <div class="hero-meta-label">Centro de Formación</div>
+                <div class="hero-meta-value">Centro Minero · Regional Boyacá</div>
+              </div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-icon">⏱️</div>
+              <div>
+                <div class="hero-meta-label">Dedicación Estimada</div>
+                <div class="hero-meta-value">4 Horas (Interactivo + Práctica)</div>
+              </div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-icon">📍</div>
+              <div>
+                <div class="hero-meta-label">Entorno Práctico</div>
+                <div class="hero-meta-value">Nodo Ubuntu 205 (LAN 192.168.205.10)</div>
+              </div>
+            </div>
+            <div class="hero-meta-item">
+              <div class="hero-meta-icon">👨‍🏫</div>
+              <div>
+                <div class="hero-meta-label">INSTRUCTOR RESPONSABLE</div>
+                <div class="hero-meta-value">Diego Alonso Ojeda Medina - Instructor Sistemas - Centro Minero</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerta Institucional: En Construcción / En Progreso -->
+        <div class="sena-alert sena-alert-warning" style="margin-bottom: 28px; padding: 18px 24px; border-left: 5px solid #FF671F; background: #FFF8E1; border-radius: 8px; display: flex; align-items: center; gap: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+          <div style="font-size: 2.2rem; line-height: 1;">🚧</div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+              <h4 style="margin: 0; color: #B78103; font-weight: 800; font-size: 1.05rem;">OVA EN FASE DE CONSTRUCCIÓN Y DESARROLLO TÉCNICO</h4>
+              <span style="background: #FF671F; color: white; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">En Progreso</span>
+            </div>
+            <p style="margin: 0; color: #4A5568; font-size: 0.92rem; line-height: 1.45;">
+              Este Objeto Virtual de Aprendizaje se encuentra en fase de desarrollo activo e integración curricular para el <strong>Ambiente 205 (Centro Minero - Regional Boyacá)</strong>. Los simuladores e interactivos se encuentran disponibles en versión preliminar de prueba formativa mientras se completan las evidencias fotográficas y documentales.
+            </p>
+          </div>
+        </div>
+
+
+        <!-- Ficha
+          <div class="sena-card-header">
+            <div class="card-title-group">
+              <div class="card-icon">🎯</div>
+              <div>
+                <h3 class="card-title">Resultados de Aprendizaje y Objetivos Formativos</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);">Competencia: Desplegar y mantener componentes de software en entornos productivos.</p>
+              </div>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="feature-item">
+              <div class="feature-icon">🧩</div>
+              <h4 class="feature-title">RAP 1: Aislamiento por Kernel Linux</h4>
+              <p class="feature-desc">Comprender los fundamentos de aislamiento mediante namespaces y control groups (cgroups v2), diferenciando contenedores ligeros de máquinas virtuales pesadas.</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">⚙️</div>
+              <h4 class="feature-title">RAP 2: Dockerfiles & Multi-Stage Builds</h4>
+              <p class="feature-desc">Construir imágenes Docker reproducibles y seguras con arquitectura multi-etapa, logrando reducir el peso de las imágenes de gigabytes a solo decenas de megabytes.</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🎼</div>
+              <h4 class="feature-title">RAP 3: Orquestación con Docker Compose</h4>
+              <p class="feature-desc">Diseñar arquitecturas multicontenedor (Frontend, API Backend, Base de Datos, Caché Redis y Reverse Proxy Nginx) con redes privadas y volúmenes persistentes.</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🚀</div>
+              <h4 class="feature-title">RAP 4: Gestión de Servidores y PaaS</h4>
+              <p class="feature-desc">Administrar el nodo servidor Ubuntu del Ambiente 205 con CloudPanel y Dokploy, configurando despliegue continuo (CI/CD) y certificados SSL automáticos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <div class="callout-title">Ruta Pedagógica Interactiva</div>
+            <div class="callout-text">
+              Esta OVA está concebida bajo el enfoque de <em>aprender haciendo</em>. Avanza por los cuatro núcleos temáticos, experimenta con el <strong>Generador Visual de Docker Compose y Simulador de Despliegue en tiempo real</strong> en la pestaña de simulador, y certifica tus competencias mediante el cuestionario gamificado final.
+            </div>
+          </div>
+        </div>
+
+        <div class="section-pager">
+          <div></div>
+          <button class="btn btn-primary btn-pager" data-target="tema1">
+            Iniciar Tema 1: VMs vs Contenedores →
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- SECCIÓN 1: VIRTUALIZACIÓN VS CONTENEDORES                           -->
+      <!-- ================================================================== -->
+      <section id="tema1" class="content-section">
+        <div class="sena-card">
+          <div class="sena-card-header">
+            <div class="card-title-group">
+              <div class="card-icon">📦</div>
+              <div>
+                <h3 class="card-title">Tema 1: Virtualización Ligera frente a Máquinas Virtuales</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);">Comprende el cambio de paradigma entre la emulación de hardware y el aislamiento de procesos del kernel.</p>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            Durante décadas, la virtualización tradicional basada en <strong>Hipervisores</strong> (como Proxmox VE, VMware ESXi o VirtualBox) fue la solución estándar para consolidar servidores. Sin embargo, cada máquina virtual (VM) requiere un sistema operativo invitado completo, con su propio kernel, módulos, controladores y servicios en segundo plano. Esto ocasiona una duplicación masiva de consumo de memoria RAM, espacio en disco y tiempo de arranque.
+          </p>
+
+          <!-- Comparativa Gráfica de Arquitectura -->
+          <div class="arch-card-grid">
+            <div class="arch-box">
+              <h4 style="text-align:center; color:#71277A; margin-bottom:12px;">🖥️ Máquinas Virtuales Tradicionales (VMs)</h4>
+              <div class="arch-stack">
+                <div class="arch-layer arch-layer-app">Aplicación A + Librerías</div>
+                <div class="arch-layer arch-layer-guest">SO Invitado A (Kernel completo ~1 GB RAM)</div>
+                <div class="arch-layer arch-layer-app">Aplicación B + Librerías</div>
+                <div class="arch-layer arch-layer-guest">SO Invitado B (Kernel completo ~1 GB RAM)</div>
+                <div class="arch-layer arch-layer-hyp">Hipervisor (Tipo 1 / Tipo 2)</div>
+                <div class="arch-layer arch-layer-hostos">Sistema Operativo Host</div>
+                <div class="arch-layer arch-layer-hw">Servidor Físico / Hardware Bare Metal</div>
+              </div>
+              <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.4;">
+                <strong>Sobrecarga:</strong> Cada VM emula BIOS/UEFI, CPU virtual, controladores de red y un kernel independiente. Arranque en minutos.
+              </p>
+            </div>
+
+            <div class="arch-box">
+              <h4 style="text-align:center; color:var(--sena-green-dark); margin-bottom:12px;">🐳 Contenedores Docker (Aislamiento de Kernel)</h4>
+              <div class="arch-stack">
+                <div class="arch-layer arch-layer-app" style="background:#005080;">Contenedor A: App SICAM API + Node.js (42 MB)</div>
+                <div class="arch-layer arch-layer-app" style="background:#007832;">Contenedor B: App PostgreSQL 16 (60 MB)</div>
+                <div class="arch-layer arch-layer-app" style="background:#39A900;">Contenedor C: Nginx Reverse Proxy (15 MB)</div>
+                <div class="arch-layer arch-layer-docker">Motor Docker Engine / containerd</div>
+                <div class="arch-layer arch-layer-hostos">Kernel Linux Compartido (Namespaces + cgroups v2)</div>
+                <div class="arch-layer arch-layer-hw">Servidor Físico / Hardware Bare Metal (Ambiente 205)</div>
+              </div>
+              <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.4;">
+                <strong>Eficiencia:</strong> No hay SO invitado. Los contenedores son procesos aislados nativos de Linux que comparten el kernel host. Arranque en milisegundos.
+              </p>
+            </div>
+          </div>
+
+          <h4 style="font-size:1.1rem; color:var(--sena-blue); margin:24px 0 12px;">Los Dos Pilares del Kernel de Linux que Hacen Posible Docker</h4>
+          <div class="grid-2">
+            <div class="feature-item" style="border-left:4px solid var(--sena-cyan);">
+              <div style="font-size:1.4rem; margin-bottom:8px;">🔒 <strong>Linux Namespaces (Aislamiento de Visibilidad)</strong></div>
+              <p class="feature-desc">
+                Engañan al proceso para que crea que está solo en la máquina. Los namespaces segregan los recursos del sistema:
+              </p>
+              <ul style="margin:8px 0 0 18px; font-size:0.86rem; color:var(--text-secondary); line-height:1.5;">
+                <li><strong>PID:</strong> Los procesos dentro del contenedor tienen su propia numeración iniciando en PID 1.</li>
+                <li><strong>NET:</strong> Pila de red independiente (interfaces virtuales <code>eth0</code>, tablas de enrutamiento y puertos).</li>
+                <li><strong>MNT:</strong> Puntos de montaje de sistemas de archivos aislados.</li>
+                <li><strong>IPC:</strong> Memoria compartida y semáforos interproceso protegidos.</li>
+                <li><strong>UTS:</strong> Hostname y nombre de dominio independientes.</li>
+                <li><strong>USER:</strong> Mapeo de usuarios para que el UID 0 dentro del contenedor no sea root en el host.</li>
+              </ul>
+            </div>
+
+            <div class="feature-item" style="border-left:4px solid var(--sena-green);">
+              <div style="font-size:1.4rem; margin-bottom:8px;">⚖️ <strong>Control Groups - cgroups v2 (Cuotas y Límites)</strong></div>
+              <p class="feature-desc">
+                Regulan y auditan el consumo de recursos de hardware de los procesos para evitar que un contenedor acapare el servidor:
+              </p>
+              <ul style="margin:8px 0 0 18px; font-size:0.86rem; color:var(--text-secondary); line-height:1.5;">
+                <li><strong>Memoria RAM:</strong> Límite máximo (ej. <code>--memory="512m"</code>) y prevención del OOM Killer en el sistema anfitrión.</li>
+                <li><strong>CPU:</strong> Asignación de núcleos dedicados (<code>--cpuset-cpus</code>) o peso relativo de tiempo de procesamiento (<code>--cpus="1.5"</code>).</li>
+                <li><strong>Block I/O:</strong> Restricción de velocidad de lectura y escritura en discos SSD/NVMe.</li>
+                <li><strong>Network:</strong> Clasificación y limitación de ancho de banda por socket.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 style="font-size:1.1rem; color:var(--sena-blue); margin:28px 0 12px;">Sistema de Archivos en Capas (Overlay2 / UnionFS)</h4>
+          <p>
+            Las imágenes de Docker no son archivos monolíticos; son un apilamiento de <strong>capas de sólo lectura (Read-Only Layers)</strong> inmutables basadas en SHA-256. Cuando lanzas un contenedor a partir de una imagen, Docker añade en la cima una delgada <strong>capa de lectura y escritura (Read-Write Container Layer)</strong>.
+          </p>
+          <div class="callout callout-success">
+            <div class="callout-icon">⚡</div>
+            <div class="callout-body">
+              <div class="callout-title">Estrategia Copy-on-Write (CoW)</div>
+              <div class="callout-text">
+                Si 20 aprendices en el Ambiente 205 lanzan 20 contenedores de la imagen <code>node:20-alpine</code>, los 20 contenedores comparten en memoria la misma imagen base de 45 MB. Solo cuando un contenedor modifica un archivo existente, el kernel copia dicho archivo hacia su capa de lectura/escritura particular. ¡Esto ahorra gigabytes de almacenamiento y memoria en los servidores del aula!
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla Comparativa Cuantitativa -->
+          <h4 style="font-size:1.1rem; color:var(--sena-blue); margin:28px 0 14px;">Matriz Comparativa: Máquina Virtual vs Contenedor</h4>
+          <div style="overflow-x:auto;">
+            <table class="container-status-table">
+              <thead>
+                <tr>
+                  <th>Criterio Técnico</th>
+                  <th>Máquina Virtual (KVM / Proxmox)</th>
+                  <th>Contenedor Docker (OCI / Linux)</th>
+                  <th>Impacto en Ambiente 205</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Kernel del Sistema</strong></td>
+                  <td>Kernel independiente por cada VM</td>
+                  <td>Kernel anfitrión Linux compartido</td>
+                  <td>Ahorro del 85% de RAM global</td>
+                </tr>
+                <tr>
+                  <td><strong>Tiempo de Arranque</strong></td>
+                  <td>30 a 90 segundos (Booteo de SO)</td>
+                  <td>50 a 500 milisegundos (Inicio de proceso)</td>
+                  <td>Despliegues ágiles en clase</td>
+                </tr>
+                <tr>
+                  <td><strong>Espacio en Disco</strong></td>
+                  <td>10 GB a 40 GB por máquina</td>
+                  <td>20 MB a 250 MB por imagen optimizada</td>
+                  <td>Mayor densidad de proyectos formativos</td>
+                </tr>
+                <tr>
+                  <td><strong>Rendimiento de E/S</strong></td>
+                  <td>Penalización por virtualización de hardware</td>
+                  <td>Rendimiento casi nativo bare-metal</td>
+                  <td>Velocidad máxima en bases de datos</td>
+                </tr>
+                <tr>
+                  <td><strong>Aislamiento y Seguridad</strong></td>
+                  <td>Aislamiento fuerte a nivel de hardware/CPU</td>
+                  <td>Aislamiento lógico por namespaces y cgroups</td>
+                  <td>Excelente para microservicios web</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section-pager">
+          <button class="btn btn-secondary btn-pager" data-target="intro">← Anterior</button>
+          <button class="btn btn-primary btn-pager" data-target="tema2">
+            Siguiente: Docker Engine, Dockerfiles y Compose →
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- SECCIÓN 2: DOCKER ENGINE, DOCKERFILES Y COMPOSE                     -->
+      <!-- ================================================================== -->
+      <section id="tema2" class="content-section">
+        <div class="sena-card">
+          <div class="sena-card-header">
+            <div class="card-title-group">
+              <div class="card-icon">🐳</div>
+              <div>
+                <h3 class="card-title">Tema 2: Docker Engine, Dockerfiles y Docker Compose</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);">Domina la construcción de artefactos reproducibles, técnicas de optimización y orquestación multicontenedor.</p>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            El <strong>Docker Engine</strong> es una suite cliente-servidor compuesta por el demonio <code>dockerd</code>, la interfaz estándar <code>containerd</code>, el ejecutor de bajo nivel <code>runc</code> (cumpliendo la especificación OCI) y el CLI de comandos accesible mediante el socket UNIX <code>/var/run/docker.sock</code>.
+          </p>
+
+          <!-- Cheat Sheet de Comandos Esenciales -->
+          <h4 style="font-size:1.1rem; color:var(--sena-blue); margin:20px 0 10px;">Comandos Esenciales del Flujo de Trabajo DevOps</h4>
+          <div class="accordion-group accordion-single">
+            <div class="accordion-item active">
+              <div class="accordion-header">
+                <span class="accordion-title">📋 1. Gestión del Ciclo de Vida de Contenedores</span>
+                <span class="accordion-icon">▾</span>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-content">
+                  <div class="terminal-box">
+                    <div class="terminal-header">
+                      <div class="terminal-dots"><span class="terminal-dot dot-red"></span><span class="terminal-dot dot-yellow"></span><span class="terminal-dot dot-green"></span></div>
+                      <span class="terminal-title">bash · terminal ambiente 205</span>
+                      <button class="terminal-copy-btn">Copiar</button>
+                    </div>
+                    <div class="terminal-body">
+                      <span class="t-comment"># Ejecutar un contenedor en segundo plano (-d) con nombre y puertos mapeados:</span><br>
+                      <span class="t-prompt">sena@nodo205:~$ </span><span class="t-cmd">docker run -d --name sicam-api -p 3000:3000 --restart always node:20-alpine</span><br>
+                      <span class="t-comment"># Listar contenedores en ejecución:</span><br>
+                      <span class="t-prompt">sena@nodo205:~$ </span><span class="t-cmd">docker ps</span><br>
+                      <span class="t-comment"># Ver consumo en tiempo real de CPU, Memoria e I/O de todos los contenedores:</span><br>
+                      <span class="t-prompt">sena@nodo205:~$ </span><span class="t-cmd">docker stats</span><br>
+                      <span class="t-comment"># Detener y reiniciar un contenedor:</span><br>
+                      <span class="t-prompt">sena@nodo205:~$ </span><span class="t-cmd">docker stop sicam-api && docker restart sicam-api</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span class="accordion-title">🔍 2. Inspección, Logs y Depuración Interactiva</span>
+                <span class="accordion-icon">▾</span>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-content">
+                  <div class="terminal-box">
+                    <div class="terminal-header">
+                      <div class="terminal-dots"><span class="terminal-dot dot-red"></span><span class="terminal-dot dot-yellow"></span><span class="terminal-dot dot-green"></span></div>
+                      <span class="terminal-title">bash · inspección de contenedores</span>
+                      <button class="terminal-copy-btn">Copiar</button>
+                    </div>
+                    <div class="terminal-body">
+                      <span class="t-comment"># Seguir en vivo los logs de la aplicación (--tail para limitar líneas):</span><br>
+                      <span class="t-prompt">sena@nodo205:~$ </span><span class="t-cmd">docker logs -f --tail 100 sicam-api</span><br>
+                      <span class="t-comment"># Abrir una terminal interactiva dentro del contenedor:</span><br>
+                      <span class="t-prompt">sena@nodo205:~$ </span><span class="t-cmd">docker exec -it sicam-api /bin/sh</span><br>
+                      <span class="t-comment"># Inspeccionar la configuración JSON completa (redes, IP interna, volúmenes):</span><br>
+                      <span class="t-prompt">sena@nodo205:~$ </span><span class="t-cmd">docker inspect sicam-api | grep -i IPAddress</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <span class="accordion-title">🧹 3. Mantenimiento y Limpieza de Recursos del Sistema</span>
+                <span class="accordion-icon">▾</span>
+              </div>
+              <div class="accordion-body">
+                <div class="accordion-content">
+                  <div class="terminal-box">
+                    <div class="terminal-header">
+                      <div class="terminal-dots"><span class="terminal-dot dot-red"></span><span class="terminal-dot dot-yellow"></span><span class="terminal-dot dot-green"></span></div>
+                      <span class="terminal-title">bash · docker system prune</span>
+                      <button class="terminal-copy-btn">Copiar</button>
+                    </div>
+                    <div class="terminal-body">
+                      <span class="t-comment"># Ver cuánto espacio en disco ocupa Docker en el nodo:</span><br>
+                      <span class="t-prompt">sena@nodo205:~$ </span><span class="t-cmd">docker system df</span><br>
+                      <span class="t-comment"># Limpiar contenedores detenidos, redes sin uso e imágenes huérfanas:</span><br>
+                      <span class="t-prompt">sena@nodo205:~$ </span><span class="t-cmd">docker system prune -a --volumes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Anatomía del Dockerfile y Multi-Stage Build -->
+          <h4 style="font-size:1.1rem; color:var(--sena-blue); margin:32px 0 12px;">Anatomía de un Dockerfile Optimizado con Multi-Stage Build</h4>
+          <p>
+            Uno de los errores más comunes en aprendices novatos es incluir compiladores, herramientas de desarrollo (SDKs, git, gcc, devDependencies de npm) en la imagen final que irá a producción. La técnica <strong>Multi-Stage Build</strong> divide el proceso en dos o más etapas: una etapa de construcción (<em>builder</em>) y una etapa final limpia (<em>production runner</em>).
+          </p>
+
+          <div class="terminal-box">
+            <div class="terminal-header">
+              <div class="terminal-dots"><span class="terminal-dot dot-red"></span><span class="terminal-dot dot-yellow"></span><span class="terminal-dot dot-green"></span></div>
+              <span class="terminal-title">Dockerfile · Proyecto SICAM (Node.js + TypeScript + Alpine)</span>
+              <button class="terminal-copy-btn">Copiar</button>
+            </div>
+            <div class="terminal-body">
+              <span class="t-comment"># ==========================================</span><br>
+              <span class="t-comment"># ETAPA 1: Compilación de dependencias (Builder)</span><br>
+              <span class="t-comment"># ==========================================</span><br>
+              <span class="token-directive">FROM</span> node:20-alpine <span class="token-directive">AS</span> builder<br>
+              <span class="token-directive">WORKDIR</span> /app<br>
+              <span class="t-comment"># Aprovechar el caché de capas copiando primero package.json</span><br>
+              <span class="token-directive">COPY</span> package*.json ./<br>
+              <span class="token-directive">RUN</span> npm ci<br>
+              <span class="token-directive">COPY</span> . .<br>
+              <span class="token-directive">RUN</span> npm run build<br>
+              <span class="token-directive">RUN</span> npm prune --production<br><br>
+              <span class="t-comment"># ==========================================</span><br>
+              <span class="t-comment"># ETAPA 2: Imagen Final Mínima y Segura</span><br>
+              <span class="t-comment"># ==========================================</span><br>
+              <span class="token-directive">FROM</span> node:20-alpine <span class="token-directive">AS</span> runner<br>
+              <span class="token-directive">WORKDIR</span> /app<br>
+              <span class="token-directive">ENV</span> NODE_ENV=production<br>
+              <span class="t-comment"># Crear usuario sin privilegios por seguridad (evitar root)</span><br>
+              <span class="token-directive">RUN</span> addgroup -g 1001 -S sena && adduser -V -D -u 1001 -G sena senauser<br>
+              <span class="t-comment"># Copiar SOLO los artefactos compilados de la Etapa 1</span><br>
+              <span class="token-directive">COPY</span> --from=builder --chown=senauser:sena /app/node_modules ./node_modules<br>
+              <span class="token-directive">COPY</span> --from=builder --chown=senauser:sena /app/dist ./dist<br>
+              <span class="token-directive">COPY</span> --from=builder --chown=senauser:sena /app/package.json ./package.json<br><br>
+              <span class="token-directive">USER</span> senauser<br>
+              <span class="token-directive">EXPOSE</span> 3000<br>
+              <span class="token-directive">CMD</span> ["node", "dist/server.js"]
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="callout callout-warning">
+              <div class="callout-icon">⚠️</div>
+              <div class="callout-body">
+                <div class="callout-title">Imagen Monolítica Convencional</div>
+                <div class="callout-text">
+                  Tamaño: <strong>1.15 GB</strong><br>
+                  Vulnerabilidades CVE encontradas: <strong>84 detectadas</strong><br>
+                  Superficie de ataque: Incluye bash, git, npm, python3 y compiladores.
+                </div>
+              </div>
+            </div>
+            <div class="callout callout-success">
+              <div class="callout-icon">🚀</div>
+              <div class="callout-body">
+                <div class="callout-title">Imagen Multi-Stage Optimizada</div>
+                <div class="callout-text">
+                  Tamaño: <strong>54 MB (¡Reducción del 95%!)</strong><br>
+                  Vulnerabilidades CVE encontradas: <strong>0 críticas</strong><br>
+                  Superficie de ataque: Solo binarios estrictamente necesarios para ejecutar.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Docker Compose -->
+          <h4 style="font-size:1.1rem; color:var(--sena-blue); margin:32px 0 12px;">Orquestación con Docker Compose (docker-compose.yml)</h4>
+          <p>
+            En proyectos del mundo real, una aplicación nunca corre aislada: necesita una base de datos relacional, un broker de mensajería para sensores IoT o una caché rápida. <strong>Docker Compose</strong> permite definir y ejecutar arquitecturas multicontenedor mediante un único archivo declarativo en formato YAML.
+          </p>
+          <div class="feature-item">
+            <h5 style="color:var(--sena-green-dark); font-size:1rem; margin-bottom:8px;">Reglas de Oro en Compose v2 para los Aprendices:</h5>
+            <ol style="margin-left:20px; font-size:0.88rem; line-height:1.6; color:var(--text-secondary);">
+              <li><strong>Healthchecks Obligatorios:</strong> Configura siempre un <code>healthcheck</code> en el servicio de base de datos para que el backend espere con <code>depends_on: { db: { condition: service_healthy } }</code>.</li>
+              <li><strong>Named Volumes para Persistencia:</strong> Nunca guardes información transaccional dentro del contenedor. Declara un volumen administrado (ej. <code>postgres_data</code>) para que los datos sobrevivan a reinicios y actualizaciones.</li>
+              <li><strong>Redes Privadas Puente (Bridge Networks):</strong> Aísla la base de datos de internet; solo el Reverse Proxy debe tener expuesto el puerto 80 o 443 al mundo exterior.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="section-pager">
+          <button class="btn btn-secondary btn-pager" data-target="tema1">← Anterior</button>
+          <button class="btn btn-primary btn-pager" data-target="tema3">
+            Siguiente: CloudPanel y Dokploy en Nodo 205 →
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- SECCIÓN 3: CLOUDPANEL Y DOKPLOY EN NODO 205                         -->
+      <!-- ================================================================== -->
+      <section id="tema3" class="content-section">
+        <div class="sena-card">
+          <div class="sena-card-header">
+            <div class="card-title-group">
+              <div class="card-icon">🖥️</div>
+              <div>
+                <h3 class="card-title">Tema 3: Gestión de Servidores y Despliegue con CloudPanel y Dokploy</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);">Aprende a gestionar el servidor Ubuntu del Ambiente 205 con paneles ligeros de última generación.</p>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            Tradicionalmente, administrar servidores requería paneles pesados y privativos como cPanel o Plesk, que consumían más de 2 GB de RAM solo en su panel de administración. En el <strong>Ambiente 205</strong> implementamos alternativas modernas, de código abierto y alto rendimiento: <strong>CloudPanel</strong> (orientado a hosting web Nginx de ultra-baja latencia) y <strong>Dokploy</strong> (una plataforma PaaS tipo Vercel/Heroku auto-hospedada sobre Docker).
+          </p>
+
+          <div class="tab-wrapper">
+            <div class="tab-nav">
+              <button class="tab-btn active" data-tab="tabCloudpanel">🌐 CloudPanel: Hosting Web & Reverse Proxy Nginx</button>
+              <button class="tab-btn" data-tab="tabDokploy">🚀 Dokploy / Coolify: CI/CD PaaS para Aprendices</button>
+            </div>
+
+            <!-- Panel 1: CloudPanel -->
+            <div id="tabCloudpanel" class="tab-pane active">
+              <div class="grid-2">
+                <div>
+                  <h4 style="color:var(--sena-blue); margin-bottom:8px;">Características Clave de CloudPanel</h4>
+                  <ul style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6; margin-left:18px;">
+                    <li><strong>Stack de Rendimiento:</strong> Motor Nginx optimizado, PHP-FPM multiversión (8.1, 8.2, 8.3), Node.js, Python y MySQL/MariaDB.</li>
+                    <li><strong>SSL Automático:</strong> Emisión e instalación de certificados Let's Encrypt con un solo clic y renovación desatendida mediante cron.</li>
+                    <li><strong>Seguridad de Aislamiento:</strong> Cada sitio web corre bajo su propio usuario del sistema operativo Linux sin privilegios sudo.</li>
+                    <li><strong>Reverse Proxy Nativo:</strong> Permite configurar fácilmente un proxy inverso hacia aplicaciones Node.js, Python o contenedores Docker en ejecución local.</li>
+                  </ul>
+                </div>
+                <div class="feature-item" style="background:var(--bg-card); border-color:var(--sena-blue);">
+                  <h5 style="color:var(--sena-blue); font-size:0.95rem; margin-bottom:8px;">Flujo de Configuración de un Reverse Proxy en CloudPanel:</h5>
+                  <div class="stepper">
+                    <div class="step-item" style="padding:10px 14px;">
+                      <strong>1.</strong> Crear sitio tipo <em>Reverse Proxy</em> con el dominio (ej. <code>sicam.centrominero.edu.co</code>).
+                    </div>
+                    <div class="step-item" style="padding:10px 14px;">
+                      <strong>2.</strong> Establecer la URL de destino al contenedor interno: <code>http://127.0.0.1:3000</code>.
+                    </div>
+                    <div class="step-item" style="padding:10px 14px;">
+                      <strong>3.</strong> Activar la casilla de verificación <em>Enable SSL</em> para cifrado HTTPS seguro.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Configuración Nginx Reverse Proxy Real -->
+              <h5 style="margin:20px 0 8px; color:var(--sena-blue);">Bloque de Configuración Nginx para Despliegues en Contenedores:</h5>
+              <div class="terminal-box">
+                <div class="terminal-header">
+                  <div class="terminal-dots"><span class="terminal-dot dot-red"></span><span class="terminal-dot dot-yellow"></span><span class="terminal-dot dot-green"></span></div>
+                  <span class="terminal-title">/etc/nginx/sites-enabled/sicam.conf</span>
+                  <button class="terminal-copy-btn">Copiar</button>
+                </div>
+                <div class="terminal-body">
+                  <span class="t-cmd">server {</span><br>
+                  &nbsp;&nbsp;<span class="t-cmd">listen 80;</span><br>
+                  &nbsp;&nbsp;<span class="t-cmd">server_name sicam.centrominero.edu.co;</span><br>
+                  &nbsp;&nbsp;<span class="t-cmd">return 301 https://$host$request_uri;</span> <span class="t-comment"># Forzar redirección HTTPS</span><br>
+                  <span class="t-cmd">}</span><br><br>
+                  <span class="t-cmd">server {</span><br>
+                  &nbsp;&nbsp;<span class="t-cmd">listen 443 ssl http2;</span><br>
+                  &nbsp;&nbsp;<span class="t-cmd">server_name sicam.centrominero.edu.co;</span><br>
+                  &nbsp;&nbsp;<span class="t-comment"># Certificados TLS gestionados automáticamente por CloudPanel</span><br>
+                  &nbsp;&nbsp;<span class="t-cmd">ssl_certificate /etc/letsencrypt/live/sicam/fullchain.pem;</span><br>
+                  &nbsp;&nbsp;<span class="t-cmd">ssl_certificate_key /etc/letsencrypt/live/sicam/privkey.pem;</span><br><br>
+                  &nbsp;&nbsp;<span class="t-cmd">location / {</span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-cmd">proxy_pass http://127.0.0.1:3000;</span> <span class="t-comment"># Redirección al contenedor Docker del aprendiz</span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-cmd">proxy_set_header Host $host;</span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-cmd">proxy_set_header X-Real-IP $remote_addr;</span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-cmd">proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-cmd">proxy_set_header X-Forwarded-Proto $scheme;</span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-comment"># Soporte para WebSockets y Server-Sent Events</span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-cmd">proxy_http_version 1.1;</span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-cmd">proxy_set_header Upgrade $http_upgrade;</span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-cmd">proxy_set_header Connection "upgrade";</span><br>
+                  &nbsp;&nbsp;<span class="t-cmd">}</span><br>
+                  <span class="t-cmd">}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 2: Dokploy -->
+            <div id="tabDokploy" class="tab-pane">
+              <div class="grid-2">
+                <div>
+                  <h4 style="color:var(--sena-green-dark); margin-bottom:8px;">Dokploy: La Nube Privada del Centro Minero</h4>
+                  <p style="font-size:0.88rem; color:var(--text-secondary); line-height:1.5;">
+                    Dokploy es una plataforma de despliegue continuo que corre directamente sobre el motor Docker de nuestro nodo Ubuntu. Permite a los aprendices trabajar como en empresas de tecnología de primer nivel (como Vercel, Netlify o AWS ECS), pero 100% alojado localmente en el Centro Minero sin costos de nube.
+                  </p>
+                  <ul style="font-size:0.88rem; color:var(--text-secondary); line-height:1.6; margin-left:18px;">
+                    <li><strong>Git Webhooks:</strong> Cada vez que el aprendiz hace <code>git push</code> a GitHub o al servidor Gitea del aula, Dokploy reconstruye la imagen automáticamente.</li>
+                    <li><strong>Despliegue Zero-Downtime:</strong> Levanta el nuevo contenedor y solo conmuta el tráfico cuando el healthcheck pasa con éxito.</li>
+                    <li><strong>Traefik Integrado:</strong> Enrutamiento dinámico que detecta automáticamente los contenedores levantados sin reiniciar el proxy.</li>
+                  </ul>
+                </div>
+                <div class="feature-item" style="border-left:4px solid var(--sena-green);">
+                  <div style="font-size:1.1rem; font-weight:700; color:var(--sena-green-dark); margin-bottom:6px;">
+                    Pipeline Típico de un Aprendiz ADSO en Dokploy:
+                  </div>
+                  <div style="font-family:var(--font-mono); font-size:0.8rem; background:var(--bg-surface); padding:12px; border-radius:6px; line-height:1.6;">
+                    1. Aprendiz edita código en VS Code.<br>
+                    2. <code>git commit -m "feat: login RFID mina" && git push</code>.<br>
+                    3. Webhook activa Dokploy en Nodo 205.<br>
+                    4. Dokploy ejecuta <code>docker build</code> con Dockerfile.<br>
+                    5. Se realizan pruebas unitarias automáticas.<br>
+                    6. Traefik actualiza la ruta y la app queda en vivo.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-pager">
+          <button class="btn btn-secondary btn-pager" data-target="tema2">← Anterior</button>
+          <button class="btn btn-primary btn-pager" data-target="tema4">
+            Siguiente: Proyectos Formativos del Centro Minero →
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- SECCIÓN 4: PROYECTOS FORMATIVOS CENTRO MINERO                       -->
+      <!-- ================================================================== -->
+      <section id="tema4" class="content-section">
+        <div class="sena-card">
+          <div class="sena-card-header">
+            <div class="card-title-group">
+              <div class="card-icon">⛏️</div>
+              <div>
+                <h3 class="card-title">Tema 4: Casos Prácticos en Proyectos del Centro Minero</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);">Implementación real de microservicios contenerizados en la Mina Didáctica de Morcá.</p>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            El aprendizaje en el SENA es contextualizado a problemas productivos reales. En la Regional Boyacá, los aprendices de los tecnólogos <strong>ADSO (228118)</strong> y <strong>Desarrollo Web Full Stack (228125)</strong> han implementado arquitecturas en contenedores Docker para digitalizar los procesos operativos y de seguridad del Centro Minero.
+          </p>
+
+          <!-- Caso 1: SICAM -->
+          <div class="sena-card" style="border-left:5px solid var(--sena-green); margin-top:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+              <div>
+                <span class="service-badge" style="background:var(--sena-green); color:#FFF;">Caso de Estudio 1</span>
+                <h4 style="font-size:1.2rem; color:var(--sena-blue); margin-top:4px;">SICAM: Sistema de Control de Acceso a Mina Didáctica</h4>
+              </div>
+              <span style="font-size:0.8rem; background:var(--sena-green-subtle); color:var(--sena-green-dark); padding:4px 10px; border-radius:12px; font-weight:700;">En Producción Activa</span>
+            </div>
+
+            <p style="font-size:0.9rem; color:var(--text-secondary);">
+              El proyecto SICAM regula el ingreso y salida de instructores, aprendices y cuadrillas de salvamento minero en la bocamina didáctica de Morcá. Utiliza hardware IoT (microcontroladores ESP32 con lectores RFID de largo alcance) interconectados con una arquitectura en contenedores Docker.
+            </p>
+
+            <div class="grid-3" style="margin-top:16px;">
+              <div class="feature-item">
+                <div class="feature-title">📡 Gateway IoT & Broker MQTT</div>
+                <div class="feature-desc">Contenedor <code>eclipse-mosquitto</code> ligero que recibe las lecturas de los torniquetes cada 50 milisegundos con protocolo QoS 1 garantizado.</div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-title">🧠 Backend API (Node / Express)</div>
+                <div class="feature-desc">Contenedor que procesa los tokens de autenticación, verifica el estado del seguro de riesgos laborales y autoriza la apertura del solenoide.</div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-title">🗄️ PostgreSQL + Named Volume</div>
+                <div class="feature-desc">Base de datos relacional con volumen persistente <code>sicam_db_data</code> que almacena el censo en tiempo real del personal bajo tierra.</div>
+              </div>
+            </div>
+
+            <div class="callout callout-info" style="margin-top:16px;">
+              <div class="callout-icon">🔒</div>
+              <div class="callout-body">
+                <div class="callout-title">Aislamiento de Redes en el Proyecto SICAM</div>
+                <div class="callout-text">
+                  Para cumplir con estándares de ciberseguridad industrial, la base de datos PostgreSQL y el broker MQTT se conectan a una red interna aislada <code>mine_internal_net</code> (sin mapeo de puertos hacia el host). Solo el reverse proxy Nginx tiene salida a la red institucional del Centro Minero para servir el panel de monitoreo a los instructores.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Caso 2: SIPAC -->
+          <div class="sena-card" style="border-left:5px solid var(--sena-blue); margin-top:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+              <div>
+                <span class="service-badge" style="background:var(--sena-blue); color:#FFF;">Caso de Estudio 2</span>
+                <h4 style="font-size:1.2rem; color:var(--sena-blue); margin-top:4px;">SIPAC: Sistema de Información para Producción y Aprendizaje</h4>
+              </div>
+              <span style="font-size:0.8rem; background:var(--sena-blue-subtle); color:var(--sena-blue); padding:4px 10px; border-radius:12px; font-weight:700;">Despliegue Continuo con Dokploy</span>
+            </div>
+
+            <p style="font-size:0.9rem; color:var(--text-secondary);">
+              El SIPAC gestiona los laboratorios de ensayo de carbones y suelos del Centro Minero, registrando análisis de humedad, porcentaje de cenizas y poder calorífico de las muestras minerales. Está desplegado con un stack MERN/LEMP multicontenedor orquestado por Docker Compose.
+            </p>
+
+            <div class="grid-2" style="margin-top:16px;">
+              <div class="feature-item">
+                <div class="feature-title">⚡ Despliegue Automatizado con Git</div>
+                <div class="feature-desc">Los aprendices integran ramas <code>feature/*</code> hacia <code>main</code>; el servidor Dokploy compila el Dockerfile multi-stage y actualiza la aplicación en menos de 40 segundos sin interrumpir el trabajo del laboratorio.</div>
+              </div>
+              <div class="feature-item">
+                <div class="feature-title">💾 Estrategia de Respaldo Automatizado</div>
+                <div class="feature-desc">Un contenedor auxiliar <code>pg-dump-cron</code> realiza copias de seguridad cada medianoche hacia una unidad de almacenamiento NAS protegida contra cortes de energía en la subestación.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-pager">
+          <button class="btn btn-secondary btn-pager" data-target="tema3">← Anterior</button>
+          <button class="btn btn-primary btn-pager" data-target="simulador">
+            Siguiente: Generador Visual y Playground de Despliegue →
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- SECCIÓN 5: SIMULADOR INTERACTIVO (GENERADOR COMPOSE & PLAYGROUND)   -->
+      <!-- ================================================================== -->
+      <section id="simulador" class="content-section">
+        <div class="sena-card">
+          <div class="sena-card-header">
+            <div class="card-title-group">
+              <div class="card-icon">⚡</div>
+              <div>
+                <h3 class="card-title">Generador Visual de Docker Compose y Playground de Despliegue</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);">
+                  Configura los microservicios de tu aplicación, observa en tiempo real cómo se genera el código YAML de <code>docker-compose.yml</code> y simula el despliegue con logs animados de arranque.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alerta de Validación -->
+          <div id="yamlValidationAlert" style="display:none; margin-bottom:16px;"></div>
+
+          <div class="playground-container">
+            <!-- PANEL IZQUIERDO: CONFIGURADOR VISUAL -->
+            <div class="playground-panel">
+              <div class="playground-title">
+                <span>🛠️ Panel de Configuración del Stack</span>
+              </div>
+
+              <!-- 1. Nombre de Proyecto -->
+              <div class="control-group">
+                <label class="control-label" for="inputProjectName">
+                  <span>Nombre del Proyecto / Stack</span>
+                  <span style="font-size:0.75rem; color:var(--text-muted);">minúsculas y guiones</span>
+                </label>
+                <input type="text" id="inputProjectName" class="control-input" value="sicam-mina" placeholder="ej. sicam-mina">
+              </div>
+
+              <!-- 2. Selector de Backend -->
+              <div class="control-group">
+                <label class="control-label">Servicio Backend (API / Lógica)</label>
+                <div class="service-selector-grid">
+                  <div class="service-card selected" data-backend="node">
+                    <div class="service-card-header">
+                      <span class="service-card-title">🟢 Node.js</span>
+                      <span class="service-badge">Express</span>
+                    </div>
+                    <span class="service-card-desc">Puerto 3000 · Alpine v20</span>
+                  </div>
+                  <div class="service-card" data-backend="python">
+                    <div class="service-card-header">
+                      <span class="service-card-title">🐍 Python</span>
+                      <span class="service-badge">FastAPI</span>
+                    </div>
+                    <span class="service-card-desc">Puerto 8000 · Uvicorn</span>
+                  </div>
+                  <div class="service-card" data-backend="php">
+                    <div class="service-card-header">
+                      <span class="service-card-title">🐘 PHP</span>
+                      <span class="service-badge">Laravel</span>
+                    </div>
+                    <span class="service-card-desc">Puerto 8080 · PHP 8.3 FPM</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Selector de Base de Datos -->
+              <div class="control-group">
+                <label class="control-label">Motor de Base de Datos</label>
+                <div class="service-selector-grid">
+                  <div class="service-card selected" data-db="postgres">
+                    <div class="service-card-header">
+                      <span class="service-card-title">🐘 PostgreSQL</span>
+                      <span class="service-badge">v16</span>
+                    </div>
+                    <span class="service-card-desc">Puerto 5432 · Healthcheck</span>
+                  </div>
+                  <div class="service-card" data-db="mariadb">
+                    <div class="service-card-header">
+                      <span class="service-card-title">🐬 MariaDB</span>
+                      <span class="service-badge">v11</span>
+                    </div>
+                    <span class="service-card-desc">Puerto 3306 · InnoDB</span>
+                  </div>
+                  <div class="service-card" data-db="none">
+                    <div class="service-card-header">
+                      <span class="service-card-title">🚫 Ninguna</span>
+                      <span class="service-badge">Sin BD</span>
+                    </div>
+                    <span class="service-card-desc">App Stateless sin motor</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. Componentes Complementarios -->
+              <div class="control-group">
+                <label class="control-label">Servicios Adicionales</label>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                  <div class="toggle-switch-group">
+                    <label>
+                      <input type="checkbox" id="checkRedis" checked style="accent-color:var(--sena-green); width:18px; height:18px;">
+                      <span>🔴 Caché en Memoria (Redis 7 Alpine)</span>
+                    </label>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">6379/tcp</span>
+                  </div>
+                  <div class="toggle-switch-group">
+                    <label>
+                      <input type="checkbox" id="checkNginx" checked style="accent-color:var(--sena-green); width:18px; height:18px;">
+                      <span>🌐 Gateway & Reverse Proxy (Nginx + SSL)</span>
+                    </label>
+                    <span style="font-size:0.75rem; color:var(--text-muted);">80/443</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. Opciones Avanzadas -->
+              <div class="grid-2" style="margin:0; gap:12px;">
+                <div class="control-group">
+                  <label class="control-label" for="inputBackendPort">Puerto Interno</label>
+                  <input type="number" id="inputBackendPort" class="control-input" value="3000">
+                </div>
+                <div class="control-group">
+                  <label class="control-label" for="selectEnvMode">Modo de Entorno</label>
+                  <select id="selectEnvMode" class="control-select">
+                    <option value="production">production</option>
+                    <option value="development">development</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <div class="toggle-switch-group">
+                  <label>
+                    <input type="checkbox" id="checkVolumes" checked style="accent-color:var(--sena-green); width:18px; height:18px;">
+                    <span>💾 Persistencia con Named Volumes</span>
+                  </label>
+                </div>
+                <div class="toggle-switch-group">
+                  <label>
+                    <input type="checkbox" id="checkNetwork" checked style="accent-color:var(--sena-green); width:18px; height:18px;">
+                    <span>🔒 Red Privada Aislada (Driver Bridge)</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Botones de Acción de Código -->
+              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+                <button type="button" id="btnValidateYaml" class="btn btn-secondary" style="flex:1; font-size:0.85rem;">
+                  ✓ Validar Sintaxis
+                </button>
+                <button type="button" id="btnCopyYaml" class="btn btn-secondary" style="flex:1; font-size:0.85rem;">
+                  📋 Copiar YAML
+                </button>
+                <button type="button" id="btnDownloadYaml" class="btn btn-secondary" style="flex:1; font-size:0.85rem;">
+                  💾 Descargar .yml
+                </button>
+              </div>
+            </div>
+
+            <!-- PANEL DERECHO: VISOR YAML Y CONSOLA DE DESPLIEGUE -->
+            <div class="playground-panel">
+              <div class="playground-title">
+                <span>📄 docker-compose.yml Generado en Vivo</span>
+              </div>
+
+              <!-- Visor de Código Reactivo -->
+              <div class="code-viewer">
+                <div class="code-viewer-header">
+                  <div class="code-viewer-title">
+                    <span>🐳 docker-compose.yml</span>
+                    <span style="font-size:0.7rem; color:#8B949E;">· v2 Compose Spec</span>
+                  </div>
+                  <span style="font-size:0.7rem; color:var(--sena-green); font-weight:600;">● Reactivo</span>
+                </div>
+                <div class="code-viewer-body" id="composeCodeViewer"></div>
+              </div>
+
+              <!-- Barra de Control de Despliegue -->
+              <div style="display:flex; gap:12px; align-items:center;">
+                <button type="button" id="btnDeployStack" class="btn btn-primary" style="flex:2; font-size:0.92rem; padding:12px;">
+                  🚀 Simular Despliegue (docker compose up -d)
+                </button>
+                <button type="button" id="btnDownStack" class="btn btn-secondary" style="flex:1; font-size:0.88rem; padding:12px;" disabled>
+                  🛑 Detener Stack
+                </button>
+              </div>
+
+              <!-- Terminal de Despliegue en Vivo -->
+              <div class="deploy-terminal">
+                <div class="deploy-terminal-header">
+                  <div style="display:flex; gap:8px;">
+                    <button class="terminal-tab-btn active" data-log="console" style="background:none; border:none; color:#FFF; font-size:0.75rem; cursor:pointer; font-weight:600;">Consola Docker</button>
+                    <button class="terminal-tab-btn" data-log="nginx" style="background:none; border:none; color:#9CA3AF; font-size:0.75rem; cursor:pointer;">Logs Nginx</button>
+                    <button class="terminal-tab-btn" data-log="backend" style="background:none; border:none; color:#9CA3AF; font-size:0.75rem; cursor:pointer;">Logs Backend</button>
+                    <button class="terminal-tab-btn" data-log="db" style="background:none; border:none; color:#9CA3AF; font-size:0.75rem; cursor:pointer;">Logs BD</button>
+                  </div>
+                  <span style="font-size:0.7rem; color:#6B7280; font-family:var(--font-mono);">Ambiente 205 Server</span>
+                </div>
+                <div class="deploy-terminal-body" id="deployTerminalBody">
+                  <div class="log-line log-tag-info" style="opacity:1;">
+                    <span style="opacity:0.6;">[Ready]</span> Esperando orden de despliegue. Presiona "Simular Despliegue" para iniciar el stack en el nodo Ubuntu del Centro Minero.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tabla de Contenedores Vivos (docker ps) -->
+              <div style="margin-top:4px;">
+                <h5 style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:6px; display:flex; justify-content:space-between;">
+                  <span>Contenedores en Ejecución (<code>docker ps</code>)</span>
+                  <span style="font-size:0.75rem; color:var(--text-muted);">Nodo: 192.168.205.10</span>
+                </h5>
+                <div style="overflow-x:auto;">
+                  <table class="container-status-table">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                        <th>Puertos</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                      </tr>
+                    </thead>
+                    <tbody id="containerTableBody">
+                      <tr>
+                        <td colspan="6" style="text-align:center; color:var(--text-muted); padding:16px;">
+                          Ningún contenedor activo. Haz clic en "Simular Despliegue" arriba.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="section-pager">
+          <button class="btn btn-secondary btn-pager" data-target="tema4">← Anterior</button>
+          <button class="btn btn-primary btn-pager" data-target="evaluacion">
+            Siguiente: Cuestionario de Evaluación y Certificación →
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- SECCIÓN 6: EVALUACIÓN FORMATIVA (10 PREGUNTAS CON SCORM)           -->
+      <!-- ================================================================== -->
+      <section id="evaluacion" class="content-section">
+        <!-- Contenedor donde SenaQuizEngine inyecta el cuestionario -->
+        <div id="quizContainer"></div>
+
+        <div class="section-pager">
+          <button class="btn btn-secondary btn-pager" data-target="simulador">← Volver al Simulador</button>
+          <button class="btn btn-primary btn-pager" data-target="sintesis">
+            Siguiente: Síntesis Conceptual →
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- SECCIÓN 7: SÍNTESIS CONCEPTUAL                                      -->
+      <!-- ================================================================== -->
+      <section id="sintesis" class="content-section">
+        <div class="sena-card">
+          <div class="sena-card-header">
+            <div class="card-title-group">
+              <div class="card-icon">🧠</div>
+              <div>
+                <h3 class="card-title">Síntesis Conceptual y Decálogo DevOps SENA</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);">Estructura integral de conocimientos para el desarrollo y despliegue de aplicaciones modernas.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Diagrama de Pila Tecnológica -->
+          <h4 style="font-size:1.1rem; color:var(--sena-blue); margin-bottom:14px;">Mapa de Capas de la Pila de Contenedores</h4>
+          <div class="stepper">
+            <div class="step-item" style="border-left:5px solid #00304D;">
+              <div>
+                <div style="font-weight:700; color:var(--sena-blue);">Capa 1: Infraestructura y Kernel Host (Ambiente 205)</div>
+                <div style="font-size:0.88rem; color:var(--text-secondary); margin-top:2px;">
+                  Servidor Ubuntu 24.04 LTS bare-metal con soporte de cgroups v2 y namespaces activos.
+                </div>
+              </div>
+            </div>
+            <div class="step-item" style="border-left:5px solid #007832;">
+              <div>
+                <div style="font-weight:700; color:var(--sena-green-dark);">Capa 2: Motor de Contenedores (Docker Engine & containerd)</div>
+                <div style="font-size:0.88rem; color:var(--text-secondary); margin-top:2px;">
+                  Gestión del demonio <code>dockerd</code>, almacenamiento de capas con <code>overlay2</code> y redes virtuales tipo bridge.
+                </div>
+              </div>
+            </div>
+            <div class="step-item" style="border-left:5px solid #39A900;">
+              <div>
+                <div style="font-weight:700; color:var(--sena-green);">Capa 3: Empaquetamiento y Orquestación (Dockerfile & Compose)</div>
+                <div style="font-size:0.88rem; color:var(--text-secondary); margin-top:2px;">
+                  Construcción multi-stage, salud de contenedores (healthchecks), volúmenes persistentes y redes privadas.
+                </div>
+              </div>
+            </div>
+            <div class="step-item" style="border-left:5px solid #50E5F9;">
+              <div>
+                <div style="font-weight:700; color:var(--sena-blue);">Capa 4: Plataforma de Gestión y Despliegue (CloudPanel & Dokploy)</div>
+                <div style="font-size:0.88rem; color:var(--text-secondary); margin-top:2px;">
+                  Reverse Proxy Nginx, certificados SSL automáticos y pipelines CI/CD vía Git Webhooks.
+                </div>
+              </div>
+            </div>
+            <div class="step-item" style="border-left:5px solid #FDC300;">
+              <div>
+                <div style="font-weight:700; color:#d48806;">Capa 5: Proyectos Formativos Productivos (SICAM & SIPAC)</div>
+                <div style="font-size:0.88rem; color:var(--text-secondary); margin-top:2px;">
+                  Soluciones aplicadas a la Mina Didáctica de Morcá, laboratorios de carbones y control de acceso seguro.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decálogo del Desarrollador DevOps SENA -->
+          <h4 style="font-size:1.1rem; color:var(--sena-blue); margin:28px 0 14px;">El Decálogo del Desarrollador DevOps SENA</h4>
+          <div class="grid-2">
+            <div class="feature-item">
+              <strong>1. Nunca en Producción como Root:</strong> Declara siempre un usuario sin privilegios (<code>USER senauser</code>) en tu Dockerfile.
+            </div>
+            <div class="feature-item">
+              <strong>2. Imágenes Ultraligeras:</strong> Emplea imágenes Alpine o Distroless con Multi-Stage Build para minimizar la superficie de vulnerabilidades.
+            </div>
+            <div class="feature-item">
+              <strong>3. Sin Datos en Contenedores:</strong> Separa el estado efímero del persistente mediante Named Volumes administrados.
+            </div>
+            <div class="feature-item">
+              <strong>4. Healthchecks Activos:</strong> No asumas que un contenedor está listo solo porque inició su proceso principal. Monitorea su salud.
+            </div>
+            <div class="feature-item">
+              <strong>5. Dependencias Ordenadas:</strong> Utiliza <code>depends_on</code> condicionado al estado saludable (<code>service_healthy</code>) de la base de datos.
+            </div>
+            <div class="feature-item">
+              <strong>6. Redes Privadas Segmentadas:</strong> Mantén las bases de datos en redes internas cerradas y expón únicamente el proxy público.
+            </div>
+            <div class="feature-item">
+              <strong>7. Variables de Entorno Seguras:</strong> Nunca quemes contraseñas o llaves API en el código ni en el Dockerfile; usa archivos <code>.env</code>.
+            </div>
+            <div class="feature-item">
+              <strong>8. Límites de Recursos Explícitos:</strong> Fija límites de memoria y CPU en cada servicio para evitar caídas generales del servidor.
+            </div>
+            <div class="feature-item">
+              <strong>9. Despliegue Continuo Automatizado:</strong> Configura Webhooks en Dokploy o CloudPanel para despliegues trazables desde Git.
+            </div>
+            <div class="feature-item">
+              <strong>10. Limpieza Sistemática:</strong> Realiza mantenimiento preventivo con <code>docker system prune</code> para no saturar el almacenamiento del aula.
+            </div>
+          </div>
+        </div>
+
+        <div class="section-pager">
+          <button class="btn btn-secondary btn-pager" data-target="evaluacion">← Anterior</button>
+          <button class="btn btn-primary btn-pager" data-target="glosario">
+            Siguiente: Glosario Técnico →
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- SECCIÓN 8: GLOSARIO TÉCNICO                                         -->
+      <!-- ================================================================== -->
+      <section id="glosario" class="content-section">
+        <div class="sena-card">
+          <div class="sena-card-header">
+            <div class="card-title-group">
+              <div class="card-icon">📖</div>
+              <div>
+                <h3 class="card-title">Glosario Técnico de Términos DevOps & Contenedores</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);">Escribe en el buscador para filtrar términos técnicos en tiempo real.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buscador en tiempo real -->
+          <div class="glossary-search-box">
+            <input type="text" id="glossarySearch" class="control-input" placeholder="🔍 Buscar término técnico (ej. cgroups, overlay2, multi-stage, reverse proxy)..." style="width:100%; padding:12px 18px; font-size:0.95rem;">
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:12px; margin-top:20px;" id="glossaryList">
+            <div class="glossary-item feature-item">
+              <strong>Control Groups (cgroups v2):</strong> Característica del kernel de Linux que permite limitar, contabilizar y aislar el uso de recursos de hardware (CPU, memoria, E/S de disco, red) de una colección de procesos.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Linux Namespaces:</strong> Mecanismo de virtualización ligera del kernel Linux que proporciona aislamiento de visibilidad a los procesos (PID, red, puntos de montaje, IPC, usuario y hostname).
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Overlay2:</strong> Controlador de almacenamiento (storage driver) predeterminado en Docker sobre Linux que implementa un sistema de archivos en capas apiladas mediante UnionFS con estrategia Copy-on-Write.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Docker Daemon (dockerd):</strong> Proceso de servicio en segundo plano persistente que administra contenedores, imágenes, redes y volúmenes en el sistema anfitrión.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Multi-Stage Build:</strong> Metodología de construcción en Dockerfile que utiliza múltiples instrucciones <code>FROM</code> temporales para compilar dependencias pesadas y copiar únicamente los artefactos finales a una imagen mínima.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Named Volume (Volumen con Nombre):</strong> Espacio de almacenamiento gestionado nativamente por Docker en el host (<code>/var/lib/docker/volumes/</code>) que persiste los datos más allá del ciclo de vida del contenedor.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Bind Mount:</strong> Montaje directo de un directorio o archivo específico de la máquina anfitriona dentro del contenedor, comúnmente empleado en entornos de desarrollo local para hot-reload.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Bridge Network:</strong> Red de puente virtual privada creada por Docker que permite a los contenedores conectados comunicarse entre sí mediante resolución interna de nombres DNS (nombre de servicio).
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Healthcheck:</strong> Sonda periódica de verificación definida en el contenedor para evaluar si la aplicación interior está realmente respondiendo y lista para recibir tráfico.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Docker Compose:</strong> Herramienta para definir y ejecutar aplicaciones Docker multicontenedor mediante un archivo declarativo YAML (<code>docker-compose.yml</code>).
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>CloudPanel:</strong> Panel de control para servidores Linux Ubuntu optimizado con PHP, Node.js y Nginx para hospedaje web de ultra-alta velocidad y consumo mínimo de recursos.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Dokploy:</strong> Plataforma PaaS de código abierto auto-alojada que automatiza el despliegue de aplicaciones y bases de datos sobre Docker mediante Git Webhooks y Traefik.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Reverse Proxy (Proxy Inverso):</strong> Servidor intermedio (como Nginx) que recibe peticiones externas en puertos estándar 80/443 y las reenvía a los puertos internos donde corren los microservicios.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Let's Encrypt / Certbot:</strong> Autoridad certificadora gratuita y automatizada que emite certificados digitales X.509 para habilitar el cifrado TLS/HTTPS seguro.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Git Webhook:</strong> Mecanismo de notificación HTTP POST disparado por un repositorio Git al recibir un nuevo commit, activando automáticamente el pipeline de despliegue continuo.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>SICAM:</strong> Sistema de Control de Acceso a Mina Didáctica, proyecto formativo del Centro Minero que integra sensores IoT RFID con microservicios en Docker.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>SIPAC:</strong> Sistema de Información para Producción y Aprendizaje en Centros Mineros, plataforma de laboratorios de carbón y suelos desplegada en el Ambiente 205.
+            </div>
+            <div class="glossary-item feature-item">
+              <strong>Container Image Layer:</strong> Capa inmutable de sólo lectura identificada por un hash criptográfico SHA-256 que compone secuencialmente una imagen de Docker.
+            </div>
+          </div>
+        </div>
+
+        <div class="section-pager">
+          <button class="btn btn-secondary btn-pager" data-target="sintesis">← Anterior</button>
+          <button class="btn btn-primary btn-pager" data-target="referencias">
+            Siguiente: Referencias & Créditos →
+          </button>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- SECCIÓN 9: REFERENCIAS Y CRÉDITOS                                   -->
+      <!-- ================================================================== -->
+      <section id="referencias" class="content-section">
+        <div class="sena-card">
+          <div class="sena-card-header">
+            <div class="card-title-group">
+              <div class="card-icon">📚</div>
+              <div>
+                <h3 class="card-title">Referencias Bibliográficas (Norma APA 7)</h3>
+                <p style="font-size:0.88rem; color:var(--text-muted);">Fuentes técnicas e institucionales que fundamentan este recurso educativo.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:14px; font-size:0.88rem; line-height:1.6; color:var(--text-secondary);">
+            <p>CloudPanel. (2024). <em>CloudPanel Documentation: Modern Server Management for PHP, Node.js and Python</em>. CloudPanel Community. https://www.cloudpanel.io/docs/</p>
+            <p>Docker Inc. (2024). <em>Docker Engine Architecture and Multi-Stage Builds Documentation</em>. Docker Docs. https://docs.docker.com/</p>
+            <p>Dokploy Team. (2024). <em>Dokploy: Open-source Platform as a Service (PaaS) for modern containerized workflows</em>. Dokploy Documentation. https://docs.dokploy.com/</p>
+            <p>Kerrisk, M. (2010). <em>The Linux Programming Interface: A Linux and UNIX System Programming Handbook</em>. No Starch Press.</p>
+            <p>Open Container Initiative [OCI]. (2023). <em>OCI Image and Runtime Specifications</em>. Linux Foundation. https://opencontainers.org/</p>
+            <p>Servicio Nacional de Aprendizaje [SENA]. (2024). <em>Diseño Curricular del Programa Tecnólogo en Análisis y Desarrollo de Software - ADSO (Código 228118)</em>. Dirección de Formación Profesional Integral.</p>
+            <p>Servicio Nacional de Aprendizaje [SENA]. (2024). <em>Diseño Curricular del Programa Tecnólogo en Desarrollo Web Full Stack (Código 228125)</em>. Regional Boyacá.</p>
+            <p>Servicio Nacional de Aprendizaje [SENA Centro Minero]. (2026). <em>Plan de Modernización Tecnológica y Arquitectura de Red del Ambiente 205</em>. Centro Minero, Regional Boyacá, Sogamoso.</p>
+          </div>
+        </div>
+
+        <div class="sena-card" style="border-top:4px solid var(--sena-green);">
+          <div class="sena-card-header">
+            <div class="card-title-group">
+              <div class="card-icon">🏛️</div>
+              <div>
+                
+
+          <div style="background: var(--sena-green-subtle); border-left: 4px solid var(--sena-green); padding: 12px 18px; border-radius: var(--radius-md); margin-bottom: 20px; font-weight: 600; color: var(--sena-green-dark); font-size: 0.95rem;">
+            👨‍🏫 <strong>Autor y Líder Técnico:</strong> Diego Alonso Ojeda Medina - Instructor Sistemas - Centro Minero
+          </div>
+
+          <div class="grid-2">
+            <div>
+              <h5 style="color:var(--sena-blue); font-size:0.95rem; margin-bottom:6px;">Entidad e Institución</h5>
+              <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.5;">
+                <strong>Servicio Nacional de Aprendizaje (SENA)</strong><br>
+                Regional Boyacá · Centro Minero (Sogamoso - Morcá)<br>
+                Red de Conocimiento en Informática, Diseño y Desarrollo de Software<br>
+                Ambiente de Formación 205: Laboratorio de Redes y Desarrollo Full Stack
+              </p>
+            </div>
+            <div>
+              <h5 style="color:var(--sena-blue); font-size:0.95rem; margin-bottom:6px;">Equipo de Desarrollo Curricular</h5>
+              <p style="font-size:0.86rem; color:var(--text-secondary); line-height:1.5;">
+                <strong>Proyecto SENNOVA:</strong> Modernización Curricular y de Ambientes de Formación<br>
+                <strong>Equipo Técnico:</strong> Instructores de Teleinformática, ADSO y Desarrollo Web<br>
+                <strong>Año de Producción:</strong> 2026 · Vigencia Curricular Activa<br>
+                <strong>Versión:</strong> 1.0 (Empaquetado SCORM 1.2 Compatible LMS Territorio/Zajuna)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-pager">
+          <button class="btn btn-secondary btn-pager" data-target="glosario">← Anterior</button>
+          <button class="btn btn-primary btn-pager" data-target="intro">
+            🔝 Volver al Inicio de la OVA
+          </button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer Institucional -->
+  <footer class="sena-footer">
+    <div class="footer-inner">
+      <img src="assets/logos/sena-logo.svg" alt="SENA" style="height:36px; opacity:0.85;">
+      <div>SERVICIO NACIONAL DE APRENDIZAJE SENA · REGIONAL BOYACÁ · CENTRO MINERO</div>
+      <div style="font-size:0.75rem; opacity:0.7;">
+        Ambiente 205 · Tecnólogo en Análisis y Desarrollo de Software (ADSO) · Tecnólogo en Desarrollo Web Full Stack · 2026
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts del Framework y Simulador -->
+  <script src="js/scorm.js"></script>
+  <script src="js/evaluacion.js"></script>
+  <script src="js/docker-simulator.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Inicialización del Cuestionario Gamificado de 10 Preguntas -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const quizQuestions = [
+        {
+          pregunta: "¿Cuál es la principal diferencia a nivel de arquitectura entre una Máquina Virtual tradicional y un contenedor Docker?",
+          opciones: [
+            "Los contenedores incluyen su propio sistema operativo con kernel independiente, mientras que las VMs comparten el kernel.",
+            "Las máquinas virtuales requieren un hipervisor y emulan hardware completo con un kernel invitado, mientras que los contenedores comparten el kernel del host mediante namespaces y cgroups.",
+            "Las máquinas virtuales no consumen memoria RAM fija, mientras que los contenedores requieren reservar toda la memoria por adelantado.",
+            "Los contenedores solo pueden ejecutarse en sistemas operativos Windows Server."
+          ],
+          correcta: 1,
+          feedback: "Las máquinas virtuales emulan hardware completo mediante un hipervisor y ejecutan un sistema operativo invitado con su propio kernel. Los contenedores comparten el kernel del sistema anfitrión, aislando procesos mediante namespaces y cgroups, lo que elimina la sobrecarga del SO invitado."
+        },
+        {
+          pregunta: "¿Qué mecanismo del kernel de Linux es responsable de limitar y monitorizar el uso de recursos físicos (CPU, memoria RAM y ancho de banda de E/S) en los contenedores?",
+          opciones: [
+            "Namespaces de Linux",
+            "Control Groups (cgroups v2)",
+            "OverlayFS Storage Driver",
+            "Módulos AppArmor y SELinux"
+          ],
+          correcta: 1,
+          feedback: "Los Control Groups (cgroups) son la característica del kernel de Linux encargada de medir, limitar y asignar cuotas de recursos físicos (CPU, memoria, disco, red) a conjuntos de procesos. Los namespaces se encargan del aislamiento de visibilidad."
+        },
+        {
+          pregunta: "¿Cuál es el principal beneficio de utilizar la técnica de 'Multi-Stage Build' en la redacción de un Dockerfile para aplicaciones de producción?",
+          opciones: [
+            "Permite compilar código en múltiples arquitecturas (ARM y x86) simultáneamente en un solo paso.",
+            "Separa las etapas de compilación (que contienen compiladores y herramientas pesadas) de la imagen final de ejecución, produciendo imágenes ultraligeras, optimizadas y más seguras.",
+            "Evita tener que definir la directiva EXPOSE para los puertos de red.",
+            "Hace obligatorio el uso de Docker Compose para poder ejecutar el contenedor."
+          ],
+          correcta: 1,
+          feedback: "Multi-stage builds permite usar imágenes completas (con SDKs, compiladores y gestores de paquetes) para construir el artefacto, y luego copiar únicamente los binarios o archivos estáticos resultantes a una imagen base mínima (como Alpine o Distroless), reduciendo el tamaño de gigabytes a solo decenas de megabytes y disminuyendo la superficie de ataque."
+        },
+        {
+          pregunta: "En un archivo Dockerfile, ¿cuál es la diferencia fundamental entre las instrucciones ENTRYPOINT y CMD?",
+          opciones: [
+            "ENTRYPOINT define el ejecutable principal e inmutable que siempre se lanzará, mientras que CMD provee argumentos por defecto que pueden ser fácilmente sobreescritos desde la línea de comandos al ejecutar 'docker run'.",
+            "CMD se ejecuta durante la construcción de la imagen ('docker build'), mientras que ENTRYPOINT se ejecuta en el contenedor vivo.",
+            "No existe ninguna diferencia técnica; son sinónimos intercambiables en cualquier versión de Docker.",
+            "ENTRYPOINT solo se utiliza en contenedores de bases de datos y CMD en servidores web."
+          ],
+          correcta: 0,
+          feedback: "ENTRYPOINT establece el comando base inmutable que actuará como proceso principal (PID 1) del contenedor, mientras que CMD provee los parámetros o subcomandos por defecto, los cuales pueden ser reemplazados si el usuario pasa argumentos al invocar 'docker run'."
+        },
+        {
+          pregunta: "Al trabajar con persistencia de datos en bases de datos (como PostgreSQL en el proyecto SICAM), ¿por qué es preferible usar un Named Volume (volumen con nombre) frente a un Bind Mount en entornos de producción?",
+          opciones: [
+            "Porque los bind mounts no permiten escribir archivos en el disco del host.",
+            "Porque los Named Volumes son gestionados de manera nativa por Docker en un directorio aislado (/var/lib/docker/volumes/), son independientes de la estructura de rutas del host, más seguros y optimizados para el almacenamiento del motor.",
+            "Porque los named volumes solo existen en la memoria RAM y se borran automáticamente al apagar el servidor.",
+            "Porque los bind mounts requieren obligatoriamente una cuenta de pago en Docker Hub."
+          ],
+          correcta: 1,
+          feedback: "Los volúmenes administrados (Named Volumes) son desacoplados de la ruta física del host, tienen mejor rendimiento de E/S, permiten migraciones y copias de seguridad estandarizadas, y evitan problemas de permisos de usuario o colisiones con la estructura de archivos del sistema operativo host."
+        },
+        {
+          pregunta: "En un archivo 'docker-compose.yml', ¿qué directiva y condición aseguran que el servicio Backend solo intente iniciar una vez que el contenedor de la Base de Datos esté completamente listo para aceptar conexiones TCP y no solo en estado 'started'?",
+          opciones: [
+            "restart: always",
+            "links: - db",
+            "depends_on con condición 'service_healthy' vinculada a un healthcheck definido en el servicio de la BD.",
+            "ports: - 5432:5432"
+          ],
+          correcta: 2,
+          feedback: "Por defecto, 'depends_on' solo espera a que el contenedor objetivo comience a ejecutarse (estado running), lo cual no garantiza que la base de datos haya inicializado sus tablas o acepte sockets. Usar 'condition: service_healthy' junto con un test de healthcheck (ej. pg_isready) asegura que la aplicación espere a que el motor esté realmente listo para operar."
+        },
+        {
+          pregunta: "En la infraestructura del Ambiente 205 con CloudPanel, ¿cuál es la función primordial de Nginx como Reverse Proxy frente a las aplicaciones web desplegadas?",
+          opciones: [
+            "Reemplazar por completo el código de la aplicación Node.js o PHP.",
+            "Recibir las peticiones HTTP/HTTPS públicas en los puertos 80/443, gestionar la terminación de certificados SSL/TLS y reenviar el tráfico interno de forma segura al puerto o socket del contenedor/aplicación.",
+            "Compilar los paquetes de software de Ubuntu automáticamente.",
+            "Asignar direcciones IP públicas a cada computador del aula de clase."
+          ],
+          correcta: 1,
+          feedback: "Nginx actúa como fachada pública de alto rendimiento: maneja el cifrado HTTPS, compresión gzip, caché de archivos estáticos y reenvía limpiamente las solicitudes (proxy_pass) al puerto interno local (ej. 127.0.0.1:3000) donde corre el contenedor del aprendiz."
+        },
+        {
+          pregunta: "¿Qué ventaja ofrece una plataforma PaaS autocontenida como Dokploy o Coolify en el Ambiente 205 para los aprendices de los tecnólogos ADSO y Web Full Stack?",
+          opciones: [
+            "Obliga a los aprendices a configurar manualmente cada regla de firewall por consola iptables.",
+            "Permite implementar despliegue continuo (CI/CD) automatizado mediante Webhooks conectados a Git, autogenerando certificados SSL y gestionando contenedores con Traefik sin requerir nubes de pago externas.",
+            "Deshabilita el uso de Docker para ejecutar aplicaciones directamente en el kernel host.",
+            "Elimina la necesidad de programar el código backend."
+          ],
+          correcta: 1,
+          feedback: "Dokploy y Coolify transforman un servidor Linux propio en un 'Vercel / Heroku privado', permitiendo que los aprendices envíen un 'git push' a su repositorio y la plataforma compile el Dockerfile, configure dominios/subdominios, emita certificados TLS y realice despliegues sin interrupción de servicio."
+        },
+        {
+          pregunta: "En el proyecto formativo SICAM (Control de acceso a mina didáctica), ¿cómo se garantiza que la base de datos PostgreSQL no quede expuesta a ataques desde la red externa de aprendices?",
+          opciones: [
+            "Publicando el puerto 5432 en la interfaz 0.0.0.0 de todos los switches.",
+            "Conectando la base de datos únicamente a una red interna privada de Docker (driver bridge sin puertos mapeados hacia el host), comunicándose únicamente con la API backend a través de nombres de servicio DNS internos.",
+            "Desactivando la contraseña de usuario administrador del motor de base de datos.",
+            "Guardando los datos de los mineros en archivos de texto plano sin base de datos."
+          ],
+          correcta: 1,
+          feedback: "En Docker Compose, al crear una red privada interna y no declarar la sección 'ports' pública en el servicio de la base de datos, este contenedor solo es accesible por los contenedores que compartan dicha red mediante su nombre de servicio ('db:5432'), protegiéndolo de cualquier acceso no autorizado desde el exterior."
+        },
+        {
+          pregunta: "Si un servidor en el Ambiente 205 presenta saturación de disco debido a pruebas continuas de construcción de imágenes y contenedores descartados, ¿cuál es el comando canónico de Docker para limpiar de forma segura contenedores detenidos, redes huérfanas e imágenes sin usar?",
+          opciones: [
+            "docker format disk -f",
+            "rm -rf /var/lib/docker",
+            "docker system prune -a --volumes",
+            "docker kill all"
+          ],
+          correcta: 2,
+          feedback: "El comando 'docker system prune' es la herramienta oficial de mantenimiento del Docker Engine para reclamar espacio en disco, eliminando contenedores parados, redes no utilizadas, imágenes huérfanas (dangling o no asociadas a contenedores activos con '-a') y opcionalmente volúmenes anónimos huérfanos."
+        }
+      ];
+
+      new SenaQuizEngine({
+        containerId: 'quizContainer',
+        questions: quizQuestions,
+        passingScore: 70,
+        ovaCode: 'OVA-04',
+        ovaTitle: 'Despliegue de aplicaciones en contenedores con Docker y CloudPanel'
+      });
+    });
+  </script>
+
+</body>
+</html>
